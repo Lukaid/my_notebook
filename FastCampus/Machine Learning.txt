@@ -34,21 +34,30 @@ Machine Learning
 H(x) = W * x + b = Y predict
 Lost Function = H(x) - Y = W * x + b - Y
 
-MSE = 1/n * sum((H(x)-Y)^2)
+MSE (Mean Square Error) = 1/n * sum((H(x)-Y)^2)
 
 최적의 W를 찾는 것 = MSE를 최소화 하는 것
 
-Gradient Descent
+경사하강법 - Gradient Descent
 
 -------------------------
+sklearn - python의 Machine Learning 패키지
 
+sklearn의 기본적인 틀
+model = LinearRegression() -- 내가 원하는 모델 선언
+model.fit(x, y) -- fit으로 모델 학습으로
+prediction = model.predict(x2) -- 학습된 모델로 예측
+
+
+-----------------------
+지도 학습에서 많이 쓰이는 단어
 학습 데이터, 예측 데이터
 features, labels, train, test
 
 학습을 해야하는 데이터 즉, X가 features (X_train, X_test)
 -예측 값은 빠져있음, 전처리 할때 빼야 함
 
-예측을 해야하는 값 즉, Y가 labels (Y_train, Y_test(Y_test는 없음))
+예측을 해야하는 값 즉, Y가 labels (Y_train, Y_test(Y_test는 없음, 우리가 예측해야할 값))
 -예측 값만 존재
 
 학습을 위한 데이터 = training set
@@ -62,8 +71,9 @@ model.fit(X_train, Y_train) #모델 적합
 prediction = model.predict(X_test) #예측
 
 ---------------------------
+검증데이터 (validation set)
 
-과대적합 / 과소적합
+과대적합(Overfitting) / 과소적합(Underfitting)
 
 training error와 test error의 trade-off를 고려하여 과적합을 피해야 함
 -> Best Complexity (Optimum)
@@ -88,3 +98,7 @@ validation error를 최소화하는 training epoch이 Optimum
  - feature 생성/연산
  - 구간생성, 스케일 변형 등
 
+-----------------------------
+결측치에서 
+fillna 는 pandas
+imputer 는 from sklearn.impute import SimpleImputer
