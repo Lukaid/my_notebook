@@ -1,0 +1,11 @@
+ex)
+/학교/학년/반/학생[2]
+//*[@학번="1-1-5"]
+
+/html/body/div/span/a... 
+//*[@id="login"] #id가 login인 것을 모든 하위 노드에서 찾아주세요
+
+네이버 메인의 로그인 버튼의 xpath는 이것
+//*[@id="account"]/a #모든 문서 밑의 id라는 속성이 "account"인 것 바로 밑에 있는 a태그를 찾아라
+#이건 전체경로
+/html/body/div[2]/div[3]/div[3]/div/div[2]/a
