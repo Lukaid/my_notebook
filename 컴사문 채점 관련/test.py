@@ -1,4 +1,4 @@
-var1 = int(input("*** 시작 숫자를 입력하세요(2이상) : "))
+`var1 = int(input("*** 시작 숫자를 입력하세요(2이상) : "))
 
 var2 = int(input("*** 끝 숫자를 입력하세요 : "))
 
@@ -18,3 +18,4 @@ for i in range(var1, var2+1):
 
 
 print("%d부터 %d까지 소수의 합은 %d 입니다." % (var1, var2, hap))
+`
