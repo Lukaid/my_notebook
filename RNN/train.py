@@ -11,11 +11,13 @@ from mnist_classification.models.fc_model import FullyConnectedClassifier
 from mnist_classification.models.cnn_model import ConvolutionalClassifier
 from mnist_classification.models.rnn_model import SequenceClassifier
 
+
 def define_argparser():
     p = argparse.ArgumentParser()
 
     p.add_argument('--model_fn', required=True)
-    p.add_argument('--gpu_id', type=int, default=0 if torch.cuda.is_available() else -1)
+    p.add_argument('--gpu_id', type=int,
+                   default=0 if torch.cuda.is_available() else -1)
 
     p.add_argument('--train_ratio', type=float, default=.8)
 
@@ -30,6 +32,7 @@ def define_argparser():
     p.add_argument('--dropout_p', type=float, default=.2)
 
     p.add_argument('--max_grad', type=float, default=-1)
+    # for gradient clipping
 
     config = p.parse_args()
 
@@ -43,11 +46,11 @@ def get_model(config):
         model = ConvolutionalClassifier(10)
     elif config.model == 'rnn':
         model = SequenceClassifier(
-            input_size = 28,
-            hidden_size = config.hidden_size,
-            output_size = 10,
-            n_layers = config.n_layers,
-            dropout_p = config.dropout_p,
+            input_size=28,
+            hidden_size=config.hidden_size,
+            output_size=10,
+            n_layers=config.n_layers,
+            dropout_p=config.dropout_p,
         )
     else:
         raise NotImplementedError('You need to specify model name.')
@@ -57,7 +60,8 @@ def get_model(config):
 
 def main(config):
     # Set device based on user defined configuration.
-    device = torch.device('cpu') if config.gpu_id < 0 else torch.device('cuda:%d' % config.gpu_id)
+    device = torch.device('cpu') if config.gpu_id < 0 else torch.device(
+        'cuda:%d' % config.gpu_id)
 
     train_loader, valid_loader, test_loader = get_loaders(config)
 
@@ -76,6 +80,7 @@ def main(config):
 
     trainer = Trainer(config)
     trainer.train(model, crit, optimizer, train_loader, valid_loader)
+
 
 if __name__ == '__main__':
     config = define_argparser()
